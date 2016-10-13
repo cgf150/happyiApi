@@ -1,9 +1,10 @@
 # happyiApi
 湖南快乐益基础api
 
-所属公司: 湖南快乐益
-	维护者邮箱:cgf_150@163.com
-	目录
+#所属公司: 湖南快乐益
+#维护者邮箱:cgf_150@163.com
+#目录
+	
 		1.移动提示类
 			调用方法:tipBridge('提示',function(){
 				//提示完毕执行函数
@@ -46,7 +47,6 @@
 						},
 						locate:true/false	//是否在地图上显示，前提是conf配置了tarId，否则会报错哦
 					})
-
 		3.滑动类
 			1.基本的iscroll结构
 			2.引入iscroll.probe.js
