@@ -6,6 +6,7 @@
 			调用方法:tipBridge('提示',function(){
 				//提示完毕执行函数
 			});
+		
 		2.腾讯地图常用类
 			调用步骤 
 				引入js文件 地址http://map.qq.com/api/js?v=2.exp&key=46QBZ-CSPWU-2BUV6-B32ZC-JQ5N7-FDBEZ
@@ -73,6 +74,13 @@
 				scrollBridge.load(function(){	//加载时需要做的操作，记住在加载完毕之后需要调用scrollBridge.loadFinish()方法
 					//
 				});
+		
+		4.图片压缩类
+			photoMini(obj,callback)
+				obj files对象
+				callback回调函数 参数data -> 图片被压缩的base64
+			toDataURL(obj,callback); 
+				参数同上，把图片文件base64化
 
 */
 
@@ -278,6 +286,7 @@ var MapManager={
 }
 
 //3.滑动类
+var opt={}
 var PageScroll=(function pageScroll(){
 	var pageIScroll=function(opt){
 		var myScroll=null,options=null,_maxScrollY=0,upEle=null,downEle=null,upOffset=0,downOffset=0,upTimer=null;
@@ -383,5 +392,34 @@ var scrollBridge=(function(fnRefresh,fnLoad){
 		}
 	}
 })();
+
+//4.图片压缩类
+function photoMini(obj,callback){
+	var base64URL='';
+	try{
+		toDataURL(obj,function(data){
+			lrz(data)
+			        .then(function (rst) {
+			            base64URL=rst.base64;
+			            callback.succ(base64URL);
+			        })
+			        .catch(function (err) {
+			            callback.error(err);
+			        })
+		})
+	}catch(e){
+		throw new Error('please include lrz.bundle.js first !');
+	}
+};
+function toDataURL(fileObj,callBack){
+	var fileReader=new FileReader();
+	fileReader.onload=function(e){
+		callBack(this.result);
+	}
+	fileReader.readAsDataURL(fileObj);
+	fileReader.onerror=function(){
+		console.log('error in api.js file ! function name is toDataURL');
+	}
+}
 
 
