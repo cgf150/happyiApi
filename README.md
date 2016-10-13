@@ -75,3 +75,10 @@
 				scrollBridge.load(function(){	//加载时需要做的操作，记住在加载完毕之后需要调用scrollBridge.loadFinish()方法
 					//
 				});
+		4.图片压缩类
+			photoMini(obj,callback)
+				obj files对象
+				callback回调函数 参数data -> 图片被压缩的base64
+			toDataURL(obj,callback); 
+				参数同上，把图片文件base64化
+			
